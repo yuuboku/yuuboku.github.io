@@ -1,19 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <title>emojipreview</title>
-  </head>
-  <body>
-    <div>
-      <span style="background-color: #ffffff; padding: 4px"><img id="preview1" src="" alt="" style="height: 40px"></span>
-      <span style="background-color: #aaaaaa; padding: 4px"><img id="preview2" src="" alt="" style="height: 40px"></span>
-      <span style="background-color: #555555; padding: 4px"><img id="preview3" src="" alt="" style="height: 40px"></span>
-      <span style="background-color: #000000; padding: 4px"><img id="preview4" src="" alt="" style="height: 40px"></span>
-    </div>
-    <div>
-      <button onclick="smaller();">小さく</button>
-      <button onclick="larger();">大きく</button>
-    </div>
     <script type="text/javascript">
       let height = 40;
       let maxheight = 100;
@@ -21,16 +8,18 @@
       let heightunit = 10;
       let params = {};
       let query = "";
-      if(location.search.length > 0) { query = location.search.substring(1).split("&"); }
-      for(let part of query) {
-        parts = part.split("=");
-        params[decodeURI(parts[0])] = decodeURI(parts[1]);
-      }
-      if(params.url != null) {
-        document.getElementById("preview1").setAttribute("src", params.url);
-        document.getElementById("preview2").setAttribute("src", params.url);
-        document.getElementById("preview3").setAttribute("src", params.url);
-        document.getElementById("preview4").setAttribute("src", params.url);
+      document.onload = function() {
+        if(location.search.length > 0) { query = location.search.substring(1).split("&"); }
+        for(let part of query) {
+          parts = part.split("=");
+          params[decodeURI(parts[0])] = decodeURI(parts[1]);
+        }
+        if(params.url != null) {
+          document.getElementById("preview1").setAttribute("src", params.url);
+          document.getElementById("preview2").setAttribute("src", params.url);
+          document.getElementById("preview3").setAttribute("src", params.url);
+          document.getElementById("preview4").setAttribute("src", params.url);
+        }
       }
       function smaller() {
         height -= heightunit:
@@ -49,5 +38,18 @@
         document.getElementById("preview4").style.height = height.toString() + "px";
       }
     </script>
+    <title>emojipreview</title>
+  </head>
+  <body>
+    <div>
+      <span style="background-color: #ffffff; padding: 4px"><img id="preview1" src="" alt="" style="height: 40px"></span>
+      <span style="background-color: #aaaaaa; padding: 4px"><img id="preview2" src="" alt="" style="height: 40px"></span>
+      <span style="background-color: #555555; padding: 4px"><img id="preview3" src="" alt="" style="height: 40px"></span>
+      <span style="background-color: #000000; padding: 4px"><img id="preview4" src="" alt="" style="height: 40px"></span>
+    </div>
+    <div>
+      <button onclick="smaller();">小さく</button>
+      <button onclick="larger();">大きく</button>
+    </div>
   </body>
 </html>
