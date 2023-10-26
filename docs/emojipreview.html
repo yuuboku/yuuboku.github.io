@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>emojipreview</title>
+  </head>
+  <body>
+    <div>
+      <span style="background-color: #ffffff"><img id="preview1" src="" alt="" style="height: 40px"></span>
+      <span style="background-color: #aaaaaa"><img id="preview2" src="" alt="" style="height: 40px"></span>
+      <span style="background-color: #555555"><img id="preview3" src="" alt="" style="height: 40px"></span>
+      <span style="background-color: #000000"><img id="preview4" src="" alt="" style="height: 40px"></span>
+    </div>
+    <script type="text/javascript">
+      let params = {};
+      let query = "";
+      if(location.search.length > 0) { query = location.search.substring(1).split("&") }
+      for(let part of query) {
+        parts = part.split("=");
+        params[decodeURI(parts[0])] = decodeURI(parts[1]);
+      }
+      if(params.url != null) {
+        document.getElementById("preview1").setAttribute("src", params.url)
+        document.getElementById("preview2").setAttribute("src", params.url)
+        document.getElementById("preview3").setAttribute("src", params.url)
+        document.getElementById("preview4").setAttribute("src", params.url)
+      }
+    </script>
+  </body>
+</html>
