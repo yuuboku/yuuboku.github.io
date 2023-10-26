@@ -21,19 +21,19 @@
       let heightunit = 10;
       let params = {};
       let query = "";
-      document.onload = function() {
-        if(location.search.length > 0) { query = location.search.substring(1).split("&"); }
-        for(let part of query) {
-          parts = part.split("=");
-          params[decodeURI(parts[0])] = decodeURI(parts[1]);
-        }
-        if(params.url != null) {
-          document.getElementById("preview1").setAttribute("src", params.url);
-          document.getElementById("preview2").setAttribute("src", params.url);
-          document.getElementById("preview3").setAttribute("src", params.url);
-          document.getElementById("preview4").setAttribute("src", params.url);
-        }
+
+      if(location.search.length > 0) { query = location.search.substring(1).split("&"); }
+      for(let part of query) {
+        parts = part.split("=");
+        params[decodeURI(parts[0])] = decodeURI(parts[1]);
       }
+      if(params.url != null) {
+        document.getElementById("preview1").setAttribute("src", params.url);
+        document.getElementById("preview2").setAttribute("src", params.url);
+        document.getElementById("preview3").setAttribute("src", params.url);
+        document.getElementById("preview4").setAttribute("src", params.url);
+      }
+
       function smaller() {
         height -= heightunit;
         if(height < minheight) { height = minheight; }
